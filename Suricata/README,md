@@ -1,0 +1,4 @@
+In this lab I demonstrated how to detect an SSH Brute Force attack by utilizing a custom suricata rule. I spinned Ubuntu on one VM with Suricata running in it. I then had a VM with Parrot Security running hydra.
+The rule that I utilized was alert tcp any any -> $HOME_NET 22 (msg: "Possible SSH brute force"; flow:established, to_server; threshold:type both, track by_src, count 2, seconds 60; sid:494949; rev:1;)
+The Hydra command I utilized was " hydra -l testuser -P/usr/share/wordlists/rockyou.txt ssh://Ip-Address.
+I learned that thresholds prevent alert flooding and suricata can be tuned to track by source IP making brute force detecton precise.
